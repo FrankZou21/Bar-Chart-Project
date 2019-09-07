@@ -2,14 +2,31 @@
 <html>
   <head>
     <title>Bar Chart Project</title>
-    <script type="text/javascript" src="/Users/admin/lighthouse/jquery.js"></script>
-    <script type="text/javascript">
+    <script src="/Users/admin/lighthouse/jquery.js"></script>
+    <script>
     $(document).ready(function(){
-      document.write("It worked");
+      alert("OK");
     });
+    </script>
+    <script>
+      function DrawBarChart(data){
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#FF0000";
+        var xAxis = 0;
+        data.forEach(function (element){
+          ctx.fillRect(xAxis, 0, 50, 50*element);
+          xAxis += 75;  
+        });
+            
+      }
     </script>
   </head>
   <body>
-    <h1>Testing 1 2 3</h1>
+    <canvas id="myCanvas" width="1000" height="1000"></canvas>
+    <script>
+      var data1 = [1, 2, 3, 4, 5];
+      DrawBarChart(data1);
+    </script>
   </body>
 </html>
