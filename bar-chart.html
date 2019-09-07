@@ -13,12 +13,15 @@
         var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext("2d");
         ctx.fillStyle = "#FF0000";
-        var xAxis = 0;
+        ctx.moveTo(200, 200);
+        ctx.lineTo(200, 800);
+        ctx.lineTo(800, 800);
+        ctx.stroke();
+        var xAxis = 225;
         data.forEach(function (element){
-          ctx.fillRect(xAxis, 0, 50, 50*element);
-          xAxis += 75;  
+          ctx.fillRect(xAxis, 800 - 50 * element, 50, 50*element);
+          xAxis += 75;
         });
-            
       }
     </script>
   </head>
