@@ -5,22 +5,23 @@
     <script src="/Users/admin/lighthouse/jquery.js"></script>
     <script>
     $(document).ready(function(){
-      alert("OK");
     });
     </script>
     <script>
-      function DrawBarChart(data){
+      function DrawBarChart(data, options){
         var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext("2d");
         ctx.fillStyle = "#FF0000";
         ctx.moveTo(200, 200);
-        ctx.lineTo(200, 800);
-        ctx.lineTo(800, 800);
+        ctx.lineTo(200, 200+options.height);
+        ctx.lineTo(800, 200+options.width);
         ctx.stroke();
-        var xAxis = 225;
+        var xAxis = 200;
+        var heightOfEachNumber = (options.height - 100) / Math.max.apply(Math, data);
+        var widthOfBar = options.width/data.length;
         data.forEach(function (element){
-          ctx.fillRect(xAxis, 800 - 50 * element, 50, 50*element);
-          xAxis += 75;
+          ctx.fillRect(xAxis, 200 + options.height - (element * heightOfEachNumber), widthOfBar, element * heightOfEachNumber);
+          xAxis += widthOfBar;
         });
       }
     </script>
@@ -29,7 +30,11 @@
     <canvas id="myCanvas" width="1000" height="1000"></canvas>
     <script>
       var data1 = [1, 2, 3, 4, 5];
-      DrawBarChart(data1);
+      var options1 = {
+        height : 600,
+        width : 600
+      };
+      DrawBarChart(data1, options1);
     </script>
   </body>
 </html>
